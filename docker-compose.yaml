@@ -1,0 +1,31 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres:13.6-bullseye
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  app:
+    build: .
+    command: sleep infinity
+    volumes:
+      - .:/workspaces/hello-django/
+    ports:
+      - "8000:8000"
+    environment:
+      - APPLICATION_DEBUG_ENABLED=yes
+      - APPLICATION_SECRET_KEY=secret
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      - db
+
+volumes:
+  postgres-data:

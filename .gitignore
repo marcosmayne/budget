@@ -1,0 +1,17 @@
+# Python virtual environment directory
+venv/
+
+# SQLite database files
+**/*.sqlite3
+
+# Terraform state files
+**/*tfstate*
+
+# Terraform providers directories
+.terraform/
+
+# Terraform plan files
+tfplan
+
+# Coverage report files
+.coverage
