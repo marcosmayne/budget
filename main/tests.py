@@ -1,10 +1,13 @@
 from django.test import TestCase
-from main.views import HelloView
+from main.models import Account
 
 
-class HelloViewTest(TestCase):
+class AccountTest(TestCase):
 
-    def test_renders_hello_message(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Hello Django')
+    def test_if_name_account_is_uppercase(self):
+        account = Account.create(name="test", balance=100.00, type="checking")
+        self.assertEqual(account.name, "TEST")
+        
+    
+
+
